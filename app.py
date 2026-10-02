@@ -1503,12 +1503,24 @@ def internal_server_error(error):
 
 
 # =========================================================
+# DATABASE INITIALIZATION
+# =========================================================
+
+# Vercel imports app.py instead of running it as a normal
+# Python script. Therefore the database schema must also be
+# initialized when the application module is imported.
+#
+# All tables use CREATE TABLE IF NOT EXISTS, so this is safe
+# when the schema already exists.
+
+initialize_database()
+
+
+# =========================================================
 # START APPLICATION
 # =========================================================
 
 if __name__ == "__main__":
-
-    initialize_database()
 
     app.run(
         host="0.0.0.0",
