@@ -1,0 +1,604 @@
+{% extends "base.html" %}
+
+{% block title %}
+Ricoz Webinars — Learn, Connect & Grow
+{% endblock %}
+
+{% block extra_css %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/home.css') }}"
+>
+{% endblock %}
+
+
+{% block content %}
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<section class="hero-section">
+
+    <div class="hero-container">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Professional Learning Platform
+            </div>
+
+            <h1>
+                Learn.
+                <span>Connect.</span>
+                Grow.
+            </h1>
+
+            <p class="hero-description">
+                Discover professional webinars designed to help you
+                build knowledge, explore new ideas and connect with
+                the Ricoz community.
+            </p>
+
+            <div class="hero-actions">
+
+                <a
+                    href="{{ url_for('webinars') }}"
+                    class="primary-button"
+                >
+                    Explore Webinars
+                    <span>→</span>
+                </a>
+
+                {% if not current_user %}
+
+                    <a
+                        href="{{ url_for('register') }}"
+                        class="secondary-button"
+                    >
+                        Create Free Account
+                    </a>
+
+                {% else %}
+
+                    <a
+                        href="{{ url_for('my_webinars') }}"
+                        class="secondary-button"
+                    >
+                        My Webinars
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+            <div class="hero-trust">
+
+                <div class="trust-item">
+                    <strong>Live</strong>
+                    <span>Interactive Sessions</span>
+                </div>
+
+                <div class="trust-divider"></div>
+
+                <div class="trust-item">
+                    <strong>Expert</strong>
+                    <span>Knowledge Sharing</span>
+                </div>
+
+                <div class="trust-divider"></div>
+
+                <div class="trust-item">
+                    <strong>Flexible</strong>
+                    <span>Online Learning</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+            <div class="visual-glow"></div>
+
+            <div class="webinar-card-main">
+
+                <div class="card-top">
+
+                    <span class="live-label">
+                        <span></span>
+                        LIVE SESSION
+                    </span>
+
+                    <span class="card-icon">R</span>
+
+                </div>
+
+                <div class="visual-screen">
+
+                    <div class="screen-header">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <div class="screen-content">
+
+                        <div class="screen-line large"></div>
+                        <div class="screen-line medium"></div>
+                        <div class="screen-line small"></div>
+
+                        <div class="screen-boxes">
+
+                            <div></div>
+                            <div></div>
+                            <div></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="visual-footer">
+
+                    <div>
+                        <strong>Ricoz Learning</strong>
+                        <span>Knowledge. Connection. Growth.</span>
+                    </div>
+
+                    <div class="play-button">
+                        ▶
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     FEATURED WEBINAR
+========================================= -->
+
+<section class="featured-section">
+
+    <div class="section-container">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="section-label">
+                    FEATURED
+                </span>
+
+                <h2>
+                    Discover what’s coming next
+                </h2>
+            </div>
+
+            <a
+                href="{{ url_for('webinars') }}"
+                class="view-all"
+            >
+                View all webinars →
+            </a>
+
+        </div>
+
+
+        {% if featured_webinar %}
+
+            <div class="featured-card">
+
+                <div class="featured-info">
+
+                    <span class="category-pill">
+                        {{ featured_webinar.category_name }}
+                    </span>
+
+                    <h3>
+                        {{ featured_webinar.title }}
+                    </h3>
+
+                    <p>
+                        {{ featured_webinar.description }}
+                    </p>
+
+                    <div class="featured-meta">
+
+                        <div>
+                            <span class="meta-label">
+                                DATE
+                            </span>
+
+                            <strong>
+                                {{ featured_webinar.scheduled_at.strftime('%d %b %Y') }}
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span class="meta-label">
+                                TIME
+                            </span>
+
+                            <strong>
+                                {{ featured_webinar.scheduled_at.strftime('%I:%M %p') }}
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span class="meta-label">
+                                FORMAT
+                            </span>
+
+                            <strong>
+                                Online Webinar
+                            </strong>
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="{{ url_for('webinar_detail', slug=featured_webinar.slug) }}"
+                        class="primary-button"
+                    >
+                        View Webinar
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+
+                <div class="featured-side">
+
+                    <div class="featured-pattern">
+
+                        <span class="pattern-r">R</span>
+
+                        <div class="pattern-lines"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        {% else %}
+
+            <div class="empty-featured">
+
+                <div class="empty-icon">
+                    R
+                </div>
+
+                <h3>
+                    Your next learning experience starts here.
+                </h3>
+
+                <p>
+                    New webinars will appear here as soon as they
+                    are published.
+                </p>
+
+                <a
+                    href="{{ url_for('webinars') }}"
+                    class="secondary-button"
+                >
+                    Browse Webinars
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     CATEGORIES
+========================================= -->
+
+<section class="categories-section">
+
+    <div class="section-container">
+
+        <div class="section-heading centered">
+
+            <span class="section-label">
+                EXPLORE TOPICS
+            </span>
+
+            <h2>
+                Learn something new
+            </h2>
+
+            <p>
+                Explore webinars across different areas of
+                knowledge and professional development.
+            </p>
+
+        </div>
+
+
+        <div class="category-grid">
+
+            <a href="{{ url_for('webinars') }}" class="category-card">
+
+                <div class="category-icon">
+                    P
+                </div>
+
+                <div>
+                    <h3>Product</h3>
+                    <p>Discover products, features and ideas.</p>
+                </div>
+
+                <span class="category-arrow">→</span>
+
+            </a>
+
+
+            <a href="{{ url_for('webinars') }}" class="category-card">
+
+                <div class="category-icon">
+                    S
+                </div>
+
+                <div>
+                    <h3>Security</h3>
+                    <p>Learn about security and protection.</p>
+                </div>
+
+                <span class="category-arrow">→</span>
+
+            </a>
+
+
+            <a href="{{ url_for('webinars') }}" class="category-card">
+
+                <div class="category-icon">
+                    C
+                </div>
+
+                <div>
+                    <h3>Customer Education</h3>
+                    <p>Build knowledge and practical skills.</p>
+                </div>
+
+                <span class="category-arrow">→</span>
+
+            </a>
+
+
+            <a href="{{ url_for('webinars') }}" class="category-card">
+
+                <div class="category-icon">
+                    T
+                </div>
+
+                <div>
+                    <h3>Technology</h3>
+                    <p>Explore technology and innovation.</p>
+                </div>
+
+                <span class="category-arrow">→</span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     UPCOMING WEBINARS
+========================================= -->
+
+<section class="upcoming-section">
+
+    <div class="section-container">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="section-label">
+                    UPCOMING
+                </span>
+
+                <h2>
+                    Reserve your next session
+                </h2>
+
+            </div>
+
+            <a
+                href="{{ url_for('webinars') }}"
+                class="view-all"
+            >
+                See all →
+            </a>
+
+        </div>
+
+
+        {% if upcoming_webinars %}
+
+            <div class="webinar-grid">
+
+                {% for webinar in upcoming_webinars %}
+
+                    <article class="webinar-card">
+
+                        <div class="webinar-card-top">
+
+                            <span class="category-pill">
+                                {{ webinar.category_name }}
+                            </span>
+
+                            <span class="status-pill">
+                                Upcoming
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            {{ webinar.title }}
+                        </h3>
+
+
+                        <p>
+                            {{ webinar.description[:150] }}
+                            {% if webinar.description|length > 150 %}
+                                ...
+                            {% endif %}
+                        </p>
+
+
+                        <div class="webinar-date">
+
+                            <div class="date-box">
+
+                                <strong>
+                                    {{ webinar.scheduled_at.strftime('%d') }}
+                                </strong>
+
+                                <span>
+                                    {{ webinar.scheduled_at.strftime('%b') }}
+                                </span>
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    {{ webinar.scheduled_at.strftime('%I:%M %p') }}
+                                </strong>
+
+                                <span>
+                                    Online Session
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <a
+                            href="{{ url_for('webinar_detail', slug=webinar.slug) }}"
+                            class="card-link"
+                        >
+                            View Details
+                            <span>→</span>
+                        </a>
+
+                    </article>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="empty-upcoming">
+
+                <div class="empty-calendar">
+                    R
+                </div>
+
+                <h3>
+                    No upcoming webinars yet.
+                </h3>
+
+                <p>
+                    Check back soon for new learning sessions.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     CALL TO ACTION
+========================================= -->
+
+<section class="cta-section">
+
+    <div class="section-container">
+
+        <div class="cta-card">
+
+            <div>
+
+                <span class="section-label">
+                    JOIN RICOZ
+                </span>
+
+                <h2>
+                    Your next idea could start here.
+                </h2>
+
+                <p>
+                    Create your account and stay connected with
+                    upcoming Ricoz webinars.
+                </p>
+
+            </div>
+
+            <div class="cta-actions">
+
+                {% if current_user %}
+
+                    <a
+                        href="{{ url_for('webinars') }}"
+                        class="white-button"
+                    >
+                        Explore Webinars →
+                    </a>
+
+                {% else %}
+
+                    <a
+                        href="{{ url_for('register') }}"
+                        class="white-button"
+                    >
+                        Create Free Account →
+                    </a>
+
+                    <a
+                        href="{{ url_for('login') }}"
+                        class="cta-login"
+                    >
+                        Already have an account?
+                        <strong>Sign in</strong>
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

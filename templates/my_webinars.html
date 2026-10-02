@@ -1,0 +1,308 @@
+{% extends "base.html" %}
+
+{% block title %}My Webinars | Ricoz Webinars{% endblock %}
+
+{% block content %}
+
+<section class="my-webinars-page">
+
+    <div class="my-webinars-container">
+
+        <!-- PAGE HEADER -->
+        <div class="my-webinars-header">
+
+            <div>
+                <span class="section-eyebrow">
+                    YOUR LEARNING
+                </span>
+
+                <h1>
+                    My Webinars
+                </h1>
+
+                <p>
+                    Manage your registered webinars and keep track
+                    of your upcoming sessions.
+                </p>
+            </div>
+
+            <a
+                href="{{ url_for('webinars') }}"
+                class="browse-button"
+            >
+                Explore Webinars
+                <span>→</span>
+            </a>
+
+        </div>
+
+
+        <!-- STATS -->
+        <div class="webinar-stats">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ✓
+                </div>
+
+                <div>
+                    <span class="stat-label">
+                        Registered
+                    </span>
+
+                    <strong>
+                        {{ my_webinars|length }}
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ◷
+                </div>
+
+                <div>
+                    <span class="stat-label">
+                        Upcoming
+                    </span>
+
+                    <strong>
+                        {{ upcoming_count|default(0) }}
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ▶
+                </div>
+
+                <div>
+                    <span class="stat-label">
+                        Completed
+                    </span>
+
+                    <strong>
+                        {{ completed_count|default(0) }}
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- WEBINARS -->
+        <section class="my-webinars-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-eyebrow">
+                        YOUR SESSIONS
+                    </span>
+
+                    <h2>
+                        Registered Webinars
+                    </h2>
+                </div>
+
+            </div>
+
+
+            {% if my_webinars %}
+
+                <div class="my-webinars-grid">
+
+                    {% for webinar in my_webinars %}
+
+                        <article class="my-webinar-card">
+
+                            <div class="webinar-card-top">
+
+                                <span class="webinar-category">
+                                    {{ webinar.category_name or 'Webinar' }}
+                                </span>
+
+                                {% if webinar.status == 'live' %}
+
+                                    <span class="status-badge status-live">
+                                        <span></span>
+                                        Live
+                                    </span>
+
+                                {% elif webinar.status == 'completed' %}
+
+                                    <span class="status-badge status-completed">
+                                        Completed
+                                    </span>
+
+                                {% elif webinar.status == 'cancelled' %}
+
+                                    <span class="status-badge status-cancelled">
+                                        Cancelled
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="status-badge status-upcoming">
+                                        Upcoming
+                                    </span>
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <h3>
+                                {{ webinar.title }}
+                            </h3>
+
+
+                            {% if webinar.short_description %}
+
+                                <p class="webinar-description">
+                                    {{ webinar.short_description }}
+                                </p>
+
+                            {% elif webinar.description %}
+
+                                <p class="webinar-description">
+                                    {{ webinar.description[:150] }}
+                                    {% if webinar.description|length > 150 %}
+                                        ...
+                                    {% endif %}
+                                </p>
+
+                            {% endif %}
+
+
+                            <div class="webinar-meta">
+
+                                <div class="meta-item">
+
+                                    <span class="meta-icon">
+                                        ◷
+                                    </span>
+
+                                    <span>
+                                        {{ webinar.scheduled_at }}
+                                    </span>
+
+                                </div>
+
+
+                                {% if webinar.duration_minutes %}
+
+                                    <div class="meta-item">
+
+                                        <span class="meta-icon">
+                                            ⏱
+                                        </span>
+
+                                        <span>
+                                            {{ webinar.duration_minutes }} min
+                                        </span>
+
+                                    </div>
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <div class="webinar-card-footer">
+
+                                <a
+                                    href="{{ url_for('webinar_detail', slug=webinar.slug) }}"
+                                    class="view-webinar-button"
+                                >
+                                    View Details
+                                    <span>→</span>
+                                </a>
+
+                            </div>
+
+                        </article>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="empty-webinars">
+
+                    <div class="empty-icon">
+                        R
+                    </div>
+
+                    <h3>
+                        No webinars yet
+                    </h3>
+
+                    <p>
+                        You haven't registered for any webinars yet.
+                        Explore our upcoming sessions and reserve your place.
+                    </p>
+
+                    <a
+                        href="{{ url_for('webinars') }}"
+                        class="empty-button"
+                    >
+                        Explore Webinars
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- INFORMATION -->
+        <section class="learning-note">
+
+            <div class="learning-note-icon">
+                i
+            </div>
+
+            <div>
+
+                <h3>
+                    Keep learning with Ricoz
+                </h3>
+
+                <p>
+                    New webinars are added regularly. Check the webinar
+                    catalog to discover upcoming sessions and register
+                    for the topics that interest you.
+                </p>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/my_webinars.css') }}"
+>
+
+{% endblock %}

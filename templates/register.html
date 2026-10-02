@@ -1,0 +1,328 @@
+{% extends "base.html" %}
+
+{% block title %}Create Account | Ricoz Webinars{% endblock %}
+
+{% block content %}
+
+<section class="auth-page">
+
+    <div class="auth-shell">
+
+        <div class="auth-brand-panel">
+
+            <div class="auth-brand-mark">
+                R
+            </div>
+
+            <span class="auth-eyebrow">
+                JOIN RICOZ WEBINARS
+            </span>
+
+            <h1>
+                Start learning.
+            </h1>
+
+            <p>
+                Create your Ricoz account and discover webinars
+                designed to help you learn, connect and grow.
+            </p>
+
+            <div class="auth-benefits">
+
+                <div class="auth-benefit">
+                    <span>✓</span>
+                    <div>
+                        <strong>Discover expert sessions</strong>
+                        <small>Explore webinars across different professional topics.</small>
+                    </div>
+                </div>
+
+                <div class="auth-benefit">
+                    <span>✓</span>
+                    <div>
+                        <strong>Register in seconds</strong>
+                        <small>Save your place in upcoming Ricoz webinars.</small>
+                    </div>
+                </div>
+
+                <div class="auth-benefit">
+                    <span>✓</span>
+                    <div>
+                        <strong>Keep everything organized</strong>
+                        <small>Manage your registrations from your account.</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="auth-form-panel">
+
+            <div class="auth-form-header">
+
+                <span class="mobile-brand-mark">
+                    R
+                </span>
+
+                <h2>
+                    Create account
+                </h2>
+
+                <p>
+                    Fill in your details to get started.
+                </p>
+
+            </div>
+
+
+            <form
+                method="POST"
+                action="{{ url_for('register') }}"
+                class="auth-form"
+            >
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Your full name"
+                        autocomplete="name"
+                        maxlength="100"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        maxlength="150"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="password-field">
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create a password"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-target="password"
+                            aria-label="Show password"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="confirm_password">
+                        Confirm password
+                    </label>
+
+                    <div class="password-field">
+
+                        <input
+                            type="password"
+                            id="confirm_password"
+                            name="confirm_password"
+                            placeholder="Repeat your password"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-target="confirm_password"
+                            aria-label="Show password"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="auth-submit"
+                >
+                    Create Account
+                    <span>→</span>
+                </button>
+
+            </form>
+
+
+            <div class="auth-divider">
+                <span>Already have an account?</span>
+            </div>
+
+
+            <a
+                href="{{ url_for('login') }}"
+                class="auth-secondary-btn"
+            >
+                Sign In
+            </a>
+
+
+            <p class="auth-footer-text">
+                By creating an account, you agree to use Ricoz Webinar
+                services responsibly and securely.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/auth.css') }}"
+>
+
+{% endblock %}
+
+
+{% block extra_js %}
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const toggleButtons =
+        document.querySelectorAll(".password-toggle");
+
+    toggleButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            const targetId =
+                button.getAttribute("data-target");
+
+            const input =
+                document.getElementById(targetId);
+
+            if (!input) {
+                return;
+            }
+
+            if (input.type === "password") {
+
+                input.type = "text";
+
+                button.textContent = "Hide";
+
+                button.setAttribute(
+                    "aria-label",
+                    "Hide password"
+                );
+
+            } else {
+
+                input.type = "password";
+
+                button.textContent = "Show";
+
+                button.setAttribute(
+                    "aria-label",
+                    "Show password"
+                );
+
+            }
+
+        });
+
+    });
+
+
+    const form = document.querySelector(".auth-form");
+
+    if (form) {
+
+        form.addEventListener("submit", function (event) {
+
+            const password =
+                document.getElementById("password");
+
+            const confirmPassword =
+                document.getElementById("confirm_password");
+
+            if (
+                password &&
+                confirmPassword &&
+                password.value !== confirmPassword.value
+            ) {
+
+                event.preventDefault();
+
+                confirmPassword.setCustomValidity(
+                    "Passwords do not match."
+                );
+
+                confirmPassword.reportValidity();
+
+            } else if (confirmPassword) {
+
+                confirmPassword.setCustomValidity("");
+
+            }
+
+        });
+
+    }
+
+});
+
+</script>
+
+{% endblock %}

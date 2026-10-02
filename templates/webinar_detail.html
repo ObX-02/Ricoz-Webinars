@@ -1,0 +1,387 @@
+{% extends "base.html" %}
+
+{% block title %}{{ webinar.title }} | Ricoz Webinars{% endblock %}
+
+{% block content %}
+
+<section class="webinar-detail-page">
+
+    <div class="detail-hero">
+
+        <div class="detail-hero-inner">
+
+            <a
+                href="{{ url_for('webinars') }}"
+                class="back-link"
+            >
+                ← Back to Webinars
+            </a>
+
+            <div class="detail-category-row">
+
+                <span class="detail-category">
+                    {{ webinar.category_name or "Webinar" }}
+                </span>
+
+                {% if webinar.status == "Live" %}
+
+                <span class="detail-status live">
+                    <span class="status-dot"></span>
+                    Live Now
+                </span>
+
+                {% elif webinar.status == "Completed" %}
+
+                <span class="detail-status completed">
+                    Completed
+                </span>
+
+                {% else %}
+
+                <span class="detail-status upcoming">
+                    Upcoming
+                </span>
+
+                {% endif %}
+
+            </div>
+
+            <h1>
+                {{ webinar.title }}
+            </h1>
+
+            <p class="detail-intro">
+                {{ webinar.description or
+                "Join Ricoz for an informative and practical webinar designed to provide useful insights and knowledge." }}
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="detail-content">
+
+        <main class="detail-main">
+
+            <section class="detail-section">
+
+                <div class="section-heading">
+                    <span class="heading-line"></span>
+
+                    <h2>
+                        About This Webinar
+                    </h2>
+                </div>
+
+                <p>
+                    {{ webinar.description or
+                    "This Ricoz webinar is designed to provide practical information, useful insights and an engaging learning experience." }}
+                </p>
+
+                <p>
+                    Join the session to explore the topic, learn from
+                    the speaker and take away practical knowledge that
+                    can be applied beyond the webinar.
+                </p>
+
+            </section>
+
+
+            {% if webinar.speaker_name %}
+
+            <section class="detail-section speaker-section">
+
+                <div class="section-heading">
+                    <span class="heading-line"></span>
+
+                    <h2>
+                        Your Speaker
+                    </h2>
+                </div>
+
+                <div class="speaker-card">
+
+                    <div class="large-speaker-avatar">
+                        {{ webinar.speaker_name[0]|upper }}
+                    </div>
+
+                    <div class="speaker-info">
+
+                        <h3>
+                            {{ webinar.speaker_name }}
+                        </h3>
+
+                        {% if webinar.speaker_title %}
+
+                        <span class="speaker-title">
+                            {{ webinar.speaker_title }}
+                        </span>
+
+                        {% endif %}
+
+                        {% if webinar.speaker_bio %}
+
+                        <p>
+                            {{ webinar.speaker_bio }}
+                        </p>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            {% endif %}
+
+
+            {% if webinar.category_description %}
+
+            <section class="detail-section">
+
+                <div class="section-heading">
+                    <span class="heading-line"></span>
+
+                    <h2>
+                        About the Category
+                    </h2>
+                </div>
+
+                <p>
+                    {{ webinar.category_description }}
+                </p>
+
+            </section>
+
+            {% endif %}
+
+        </main>
+
+
+        <aside class="detail-sidebar">
+
+            <div class="registration-card">
+
+                <div class="registration-card-top">
+
+                    <span class="registration-label">
+                        WEBINAR DETAILS
+                    </span>
+
+                    <div class="registration-icon">
+                        R
+                    </div>
+
+                </div>
+
+
+                <div class="detail-info-list">
+
+                    {% if webinar.scheduled_at %}
+
+                    <div class="detail-info-item">
+
+                        <div class="info-icon">
+                            ◷
+                        </div>
+
+                        <div>
+                            <span class="info-label">
+                                Date & Time
+                            </span>
+
+                            <strong>
+                                {{ webinar.scheduled_at.strftime("%d %B %Y") }}
+                            </strong>
+
+                            <small>
+                                {{ webinar.scheduled_at.strftime("%I:%M %p") }}
+                            </small>
+                        </div>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    {% if webinar.duration_minutes %}
+
+                    <div class="detail-info-item">
+
+                        <div class="info-icon">
+                            ◴
+                        </div>
+
+                        <div>
+                            <span class="info-label">
+                                Duration
+                            </span>
+
+                            <strong>
+                                {{ webinar.duration_minutes }} minutes
+                            </strong>
+                        </div>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    {% if webinar.category_name %}
+
+                    <div class="detail-info-item">
+
+                        <div class="info-icon">
+                            R
+                        </div>
+
+                        <div>
+                            <span class="info-label">
+                                Category
+                            </span>
+
+                            <strong>
+                                {{ webinar.category_name }}
+                            </strong>
+                        </div>
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="registration-action">
+
+                    {% if current_user %}
+
+                        {% if webinar.status == "Completed" %}
+
+                            {% if webinar.recording_url %}
+
+                            <a
+                                href="{{ webinar.recording_url }}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="primary-detail-btn"
+                            >
+                                Watch Recording
+                                <span>→</span>
+                            </a>
+
+                            {% else %}
+
+                            <div class="detail-notice">
+                                Recording will be available here when published.
+                            </div>
+
+                            {% endif %}
+
+                        {% elif webinar.status == "Live" %}
+
+                            {% if webinar.meeting_link %}
+
+                            <a
+                                href="{{ webinar.meeting_link }}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="primary-detail-btn"
+                            >
+                                Join Webinar
+                                <span>→</span>
+                            </a>
+
+                            {% else %}
+
+                            <div class="detail-notice">
+                                The live meeting link will be available shortly.
+                            </div>
+
+                            {% endif %}
+
+                        {% else %}
+
+                        <form
+                            action="{{ url_for('register_webinar', webinar_id=webinar.id) }}"
+                            method="POST"
+                        >
+
+                            <button
+                                type="submit"
+                                class="primary-detail-btn"
+                            >
+                                Register for Webinar
+                                <span>→</span>
+                            </button>
+
+                        </form>
+
+                        <p class="registration-note">
+                            Sign in to register for this session.
+                        </p>
+
+                        {% endif %}
+
+                    {% else %}
+
+                    <a
+                        href="{{ url_for('login') }}"
+                        class="primary-detail-btn"
+                    >
+                        Sign In to Register
+                        <span>→</span>
+                    </a>
+
+                    <p class="registration-note">
+                        Don't have an account?
+                        <a href="{{ url_for('register') }}">
+                            Create one
+                        </a>
+                    </p>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <div class="sidebar-note">
+
+                <div class="sidebar-note-icon">
+                    ✓
+                </div>
+
+                <div>
+                    <strong>
+                        Ricoz Learning
+                    </strong>
+
+                    <p>
+                        Learn from practical sessions
+                        and stay connected with Ricoz.
+                    </p>
+                </div>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/webinar_detail.css') }}"
+>
+
+{% endblock %}

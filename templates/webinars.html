@@ -1,0 +1,335 @@
+{% extends "base.html" %}
+
+{% block title %}Webinars | Ricoz{% endblock %}
+
+{% block content %}
+
+<section class="webinars-page">
+
+    <div class="webinars-hero">
+
+        <div class="webinars-hero-content">
+
+            <span class="section-badge">
+                RICOZ LEARNING
+            </span>
+
+            <h1>
+                Explore Our Webinars
+            </h1>
+
+            <p>
+                Discover practical sessions, expert insights,
+                product knowledge and technology-focused learning
+                designed to help you learn and grow.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <section class="webinars-content">
+
+        <div class="webinars-toolbar">
+
+            <div>
+                <h2>All Webinars</h2>
+
+                <p>
+                    Explore upcoming and recorded sessions.
+                </p>
+            </div>
+
+            {% if categories %}
+
+            <div class="category-filter">
+
+                <button
+                    type="button"
+                    class="category-btn active"
+                    data-category="all"
+                >
+                    All
+                </button>
+
+                {% for category in categories %}
+
+                <button
+                    type="button"
+                    class="category-btn"
+                    data-category="{{ category.name|lower|replace(' ', '-') }}"
+                >
+                    {{ category.name }}
+                </button>
+
+                {% endfor %}
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+        {% if webinars %}
+
+        <div class="webinars-grid" id="webinarsGrid">
+
+            {% for webinar in webinars %}
+
+            <article
+                class="webinar-card"
+                data-category="{{ (webinar.category_name or 'other')|lower|replace(' ', '-') }}"
+            >
+
+                <div class="webinar-card-top">
+
+                    <span class="webinar-category">
+                        {{ webinar.category_name or "Webinar" }}
+                    </span>
+
+                    {% if webinar.status == "Live" %}
+
+                    <span class="webinar-status live">
+                        <span class="status-dot"></span>
+                        Live
+                    </span>
+
+                    {% elif webinar.status == "Completed" %}
+
+                    <span class="webinar-status completed">
+                        Completed
+                    </span>
+
+                    {% else %}
+
+                    <span class="webinar-status upcoming">
+                        Upcoming
+                    </span>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="webinar-card-icon">
+                    <span>R</span>
+                </div>
+
+
+                <div class="webinar-card-body">
+
+                    <h3>
+                        {{ webinar.title }}
+                    </h3>
+
+                    <p>
+                        {{ webinar.description or
+                        "Join this Ricoz webinar for practical insights and useful information." }}
+                    </p>
+
+                    <div class="webinar-meta">
+
+                        {% if webinar.scheduled_at %}
+
+                        <div class="meta-item">
+                            <span class="meta-icon">◷</span>
+
+                            <span>
+                                {{ webinar.scheduled_at.strftime("%d %b %Y, %I:%M %p") }}
+                            </span>
+                        </div>
+
+                        {% endif %}
+
+
+                        {% if webinar.duration_minutes %}
+
+                        <div class="meta-item">
+                            <span class="meta-icon">◴</span>
+
+                            <span>
+                                {{ webinar.duration_minutes }} min
+                            </span>
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    {% if webinar.speaker_name %}
+
+                    <div class="speaker-preview">
+
+                        <div class="speaker-avatar">
+                            {{ webinar.speaker_name[0]|upper }}
+                        </div>
+
+                        <div>
+                            <strong>
+                                {{ webinar.speaker_name }}
+                            </strong>
+
+                            {% if webinar.speaker_title %}
+
+                            <span>
+                                {{ webinar.speaker_title }}
+                            </span>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="webinar-card-footer">
+
+                    <a
+                        href="{{ url_for('webinar_detail', slug=webinar.slug) }}"
+                        class="webinar-view-btn"
+                    >
+                        View Webinar
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+
+        <div
+            class="no-filter-results"
+            id="noFilterResults"
+            style="display: none;"
+        >
+
+            <div class="empty-icon">
+                R
+            </div>
+
+            <h3>
+                No webinars found
+            </h3>
+
+            <p>
+                There are no webinars in this category.
+            </p>
+
+        </div>
+
+
+        {% else %}
+
+        <div class="empty-webinars">
+
+            <div class="empty-webinars-icon">
+                R
+            </div>
+
+            <h3>
+                Webinars are coming soon
+            </h3>
+
+            <p>
+                We are preparing valuable sessions for you.
+                Check back soon for upcoming Ricoz webinars.
+            </p>
+
+            <a
+                href="{{ url_for('home') }}"
+                class="empty-home-btn"
+            >
+                Back to Home
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+</section>
+
+{% endblock %}
+
+
+{% block extra_css %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/webinars.css') }}"
+>
+{% endblock %}
+
+
+{% block extra_js %}
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const buttons = document.querySelectorAll(".category-btn");
+    const cards = document.querySelectorAll(".webinar-card");
+    const emptyMessage = document.getElementById("noFilterResults");
+
+    buttons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            buttons.forEach(function (item) {
+                item.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+            const selectedCategory =
+                button.getAttribute("data-category");
+
+            let visibleCards = 0;
+
+            cards.forEach(function (card) {
+
+                const cardCategory =
+                    card.getAttribute("data-category");
+
+                if (
+                    selectedCategory === "all" ||
+                    cardCategory === selectedCategory
+                ) {
+
+                    card.style.display = "";
+
+                    visibleCards++;
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+            if (emptyMessage) {
+
+                emptyMessage.style.display =
+                    visibleCards === 0 ? "block" : "none";
+
+            }
+
+        });
+
+    });
+
+});
+</script>
+
+{% endblock %}

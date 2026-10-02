@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Something Went Wrong | Ricoz Webinars{% endblock %}
+
+{% block content %}
+
+<section class="error-page">
+
+    <div class="error-card">
+
+        <div class="error-code">
+            500
+        </div>
+
+        <span class="error-eyebrow">
+            TEMPORARY ERROR
+        </span>
+
+        <h1>
+            Something went wrong.
+        </h1>
+
+        <p>
+            We couldn't complete your request right now.
+            Please try again in a moment.
+        </p>
+
+        <div class="error-actions">
+
+            <a
+                href="{{ url_for('home') }}"
+                class="error-primary"
+            >
+                Back to Home
+                <span>→</span>
+            </a>
+
+            <a
+                href="javascript:location.reload()"
+                class="error-secondary"
+            >
+                Try Again
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/error.css') }}"
+>
+
+{% endblock %}

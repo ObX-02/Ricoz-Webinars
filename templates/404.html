@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found | Ricoz Webinars{% endblock %}
+
+{% block content %}
+
+<section class="error-page">
+
+    <div class="error-card">
+
+        <div class="error-code">
+            404
+        </div>
+
+        <span class="error-eyebrow">
+            PAGE NOT FOUND
+        </span>
+
+        <h1>
+            This page doesn't exist.
+        </h1>
+
+        <p>
+            The page you're looking for may have been moved,
+            removed, or the address may be incorrect.
+        </p>
+
+        <div class="error-actions">
+
+            <a
+                href="{{ url_for('home') }}"
+                class="error-primary"
+            >
+                Back to Home
+                <span>→</span>
+            </a>
+
+            <a
+                href="{{ url_for('webinars') }}"
+                class="error-secondary"
+            >
+                Explore Webinars
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/error.css') }}"
+>
+
+{% endblock %}

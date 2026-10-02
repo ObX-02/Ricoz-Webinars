@@ -1,0 +1,544 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if edit_mode|default(false) %}
+Edit Webinar | Ricoz Webinars
+{% else %}
+Create Webinar | Ricoz Webinars
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<section class="admin-form-page">
+
+```
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="admin-form-header">
+
+        <div>
+
+            <span class="admin-form-eyebrow">
+                ADMINISTRATION
+            </span>
+
+            <h1>
+                {% if edit_mode|default(false) %}
+                    Edit Webinar
+                {% else %}
+                    Create a Webinar
+                {% endif %}
+            </h1>
+
+            <p>
+                {% if edit_mode|default(false) %}
+                    Update the details, schedule and publishing settings
+                    for this webinar.
+                {% else %}
+                    Add a new webinar to the Ricoz platform.
+                    Published webinars will become visible to customers.
+                {% endif %}
+            </p>
+
+        </div>
+
+        <a
+            href="{{ url_for('admin') }}"
+            class="admin-form-back"
+        >
+            ← Back to Admin
+        </a>
+
+    </div>
+
+
+    <!-- FORM -->
+    <form
+        method="POST"
+        class="webinar-form"
+    >
+
+        <!-- BASIC INFORMATION -->
+        <div class="form-card">
+
+            <div class="form-card-header">
+
+                <div>
+
+                    <span class="form-section-number">
+                        01
+                    </span>
+
+                    <h2>
+                        Basic Information
+                    </h2>
+
+                </div>
+
+                <p>
+                    Tell customers what this webinar is about.
+                </p>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="title">
+                    Webinar Title
+                    <span>*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    maxlength="255"
+                    placeholder="e.g. Getting Started with Modern Cybersecurity"
+                    value="{{ webinar.title if webinar else '' }}"
+                    required
+                >
+
+                <small>
+                    Choose a clear and professional title.
+                </small>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="description">
+                    Description
+                </label>
+
+                <textarea
+                    id="description"
+                    name="description"
+                    rows="7"
+                    placeholder="Describe what attendees will learn during this webinar..."
+                >{{ webinar.description if webinar and webinar.description else '' }}</textarea>
+
+                <small>
+                    Explain the main topics, learning outcomes and
+                    value for attendees.
+                </small>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="category_id">
+                        Category
+                    </label>
+
+                    <select
+                        id="category_id"
+                        name="category_id"
+                    >
+
+                        <option value="">
+                            Select a category
+                        </option>
+
+                        {% for category in categories %}
+
+                            <option
+                                value="{{ category.id }}"
+                                {% if webinar and webinar.category_id == category.id %}
+                                    selected
+                                {% endif %}
+                            >
+                                {{ category.name }}
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="status">
+                        Status
+                    </label>
+
+                    <select
+                        id="status"
+                        name="status"
+                    >
+
+                        <option
+                            value="Upcoming"
+                            {% if not webinar or webinar.status == 'Upcoming' %}
+                                selected
+                            {% endif %}
+                        >
+                            Upcoming
+                        </option>
+
+                        <option
+                            value="Live"
+                            {% if webinar and webinar.status == 'Live' %}
+                                selected
+                            {% endif %}
+                        >
+                            Live
+                        </option>
+
+                        <option
+                            value="Completed"
+                            {% if webinar and webinar.status == 'Completed' %}
+                                selected
+                            {% endif %}
+                        >
+                            Completed
+                        </option>
+
+                        <option
+                            value="Cancelled"
+                            {% if webinar and webinar.status == 'Cancelled' %}
+                                selected
+                            {% endif %}
+                        >
+                            Cancelled
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SCHEDULE -->
+        <div class="form-card">
+
+            <div class="form-card-header">
+
+                <div>
+
+                    <span class="form-section-number">
+                        02
+                    </span>
+
+                    <h2>
+                        Schedule
+                    </h2>
+
+                </div>
+
+                <p>
+                    Set when the webinar will take place.
+                </p>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="scheduled_at">
+                        Date & Time
+                    </label>
+
+                    <input
+                        type="datetime-local"
+                        id="scheduled_at"
+                        name="scheduled_at"
+                        value="{% if webinar and webinar.scheduled_at %}{{ webinar.scheduled_at.strftime('%Y-%m-%dT%H:%M') }}{% endif %}"
+                    >
+
+                    <small>
+                        Use your local webinar time.
+                    </small>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="duration_minutes">
+                        Duration
+                    </label>
+
+                    <div class="input-with-suffix">
+
+                        <input
+                            type="number"
+                            id="duration_minutes"
+                            name="duration_minutes"
+                            min="1"
+                            value="{{ webinar.duration_minutes if webinar and webinar.duration_minutes else 60 }}"
+                            placeholder="60"
+                        >
+
+                        <span>
+                            minutes
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SPEAKER -->
+        <div class="form-card">
+
+            <div class="form-card-header">
+
+                <div>
+
+                    <span class="form-section-number">
+                        03
+                    </span>
+
+                    <h2>
+                        Speaker
+                    </h2>
+
+                </div>
+
+                <p>
+                    Add information about the webinar speaker.
+                </p>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="speaker_name">
+                        Speaker Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="speaker_name"
+                        name="speaker_name"
+                        maxlength="150"
+                        placeholder="e.g. Sarah Ahmed"
+                        value="{{ webinar.speaker_name if webinar and webinar.speaker_name else '' }}"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="speaker_title">
+                        Professional Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="speaker_title"
+                        name="speaker_title"
+                        maxlength="150"
+                        placeholder="e.g. Cybersecurity Consultant"
+                        value="{{ webinar.speaker_title if webinar and webinar.speaker_title else '' }}"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="speaker_bio">
+                    Speaker Bio
+                </label>
+
+                <textarea
+                    id="speaker_bio"
+                    name="speaker_bio"
+                    rows="5"
+                    placeholder="Briefly introduce the speaker and their expertise..."
+                >{{ webinar.speaker_bio if webinar and webinar.speaker_bio else '' }}</textarea>
+
+            </div>
+
+        </div>
+
+
+        <!-- WEBINAR ACCESS -->
+        <div class="form-card">
+
+            <div class="form-card-header">
+
+                <div>
+
+                    <span class="form-section-number">
+                        04
+                    </span>
+
+                    <h2>
+                        Webinar Access
+                    </h2>
+
+                </div>
+
+                <p>
+                    Add the online meeting and recording links.
+                </p>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="meeting_link">
+                    Meeting Link
+                </label>
+
+                <input
+                    type="url"
+                    id="meeting_link"
+                    name="meeting_link"
+                    placeholder="https://..."
+                    value="{{ webinar.meeting_link if webinar and webinar.meeting_link else '' }}"
+                >
+
+                <small>
+                    Example: Zoom, Google Meet or Microsoft Teams link.
+                </small>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="recording_url">
+                    Recording URL
+                </label>
+
+                <input
+                    type="url"
+                    id="recording_url"
+                    name="recording_url"
+                    placeholder="https://..."
+                    value="{{ webinar.recording_url if webinar and webinar.recording_url else '' }}"
+                >
+
+                <small>
+                    Add this later when a recording becomes available.
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- PUBLISH -->
+        <div class="form-card publish-card">
+
+            <div class="publish-content">
+
+                <div class="publish-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <h2>
+                        Publish Webinar
+                    </h2>
+
+                    <p>
+                        Published webinars are visible on the
+                        public webinar pages.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <label class="publish-toggle">
+
+                <input
+                    type="checkbox"
+                    name="is_published"
+                    id="is_published"
+                    {% if webinar and webinar.is_published %}
+                        checked
+                    {% endif %}
+                >
+
+                <span class="toggle-track">
+                    <span class="toggle-thumb"></span>
+                </span>
+
+                <span class="toggle-label">
+                    Publish this webinar
+                </span>
+
+            </label>
+
+        </div>
+
+
+        <!-- ACTIONS -->
+        <div class="form-actions">
+
+            <a
+                href="{{ url_for('admin') }}"
+                class="form-cancel"
+            >
+                Cancel
+            </a>
+
+
+            <button
+                type="submit"
+                class="form-submit"
+            >
+
+                {% if edit_mode|default(false) %}
+                    Update Webinar
+                {% else %}
+                    Create Webinar
+                {% endif %}
+
+                <span>
+                    →
+                </span>
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+```
+
+</section>
+
+{% endblock %}
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/admin_webinar_form.css') }}"
+>
+
+{% endblock %}

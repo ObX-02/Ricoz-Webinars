@@ -1,0 +1,238 @@
+{% extends "base.html" %}
+
+{% block title %}Sign In | Ricoz Webinars{% endblock %}
+
+{% block content %}
+
+<section class="auth-page">
+
+    <div class="auth-shell">
+
+        <div class="auth-brand-panel">
+
+            <div class="auth-brand-mark">
+                R
+            </div>
+
+            <span class="auth-eyebrow">
+                RICOZ WEBINARS
+            </span>
+
+            <h1>
+                Welcome back.
+            </h1>
+
+            <p>
+                Sign in to access your webinars, registrations
+                and personalized learning experience.
+            </p>
+
+            <div class="auth-benefits">
+
+                <div class="auth-benefit">
+                    <span>✓</span>
+                    <div>
+                        <strong>Manage your webinars</strong>
+                        <small>Keep all your registered sessions in one place.</small>
+                    </div>
+                </div>
+
+                <div class="auth-benefit">
+                    <span>✓</span>
+                    <div>
+                        <strong>Stay connected</strong>
+                        <small>Keep track of upcoming Ricoz sessions.</small>
+                    </div>
+                </div>
+
+                <div class="auth-benefit">
+                    <span>✓</span>
+                    <div>
+                        <strong>Learn at your pace</strong>
+                        <small>Access sessions and recordings when available.</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="auth-form-panel">
+
+            <div class="auth-form-header">
+
+                <span class="mobile-brand-mark">
+                    R
+                </span>
+
+                <h2>
+                    Sign in
+                </h2>
+
+                <p>
+                    Enter your account details to continue.
+                </p>
+
+            </div>
+
+
+            <form
+                method="POST"
+                action="{{ url_for('login') }}"
+                class="auth-form"
+            >
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <div class="password-label-row">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                    </div>
+
+                    <div class="password-field">
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-target="password"
+                            aria-label="Show password"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="auth-submit"
+                >
+                    Sign In
+                    <span>→</span>
+                </button>
+
+            </form>
+
+
+            <div class="auth-divider">
+                <span>New to Ricoz?</span>
+            </div>
+
+
+            <a
+                href="{{ url_for('register') }}"
+                class="auth-secondary-btn"
+            >
+                Create an Account
+            </a>
+
+
+            <p class="auth-footer-text">
+                By continuing, you agree to use Ricoz Webinar
+                services responsibly and securely.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/auth.css') }}"
+>
+
+{% endblock %}
+
+
+{% block extra_js %}
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const toggleButtons =
+        document.querySelectorAll(".password-toggle");
+
+    toggleButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            const targetId =
+                button.getAttribute("data-target");
+
+            const input =
+                document.getElementById(targetId);
+
+            if (!input) {
+                return;
+            }
+
+            if (input.type === "password") {
+
+                input.type = "text";
+                button.textContent = "Hide";
+                button.setAttribute(
+                    "aria-label",
+                    "Hide password"
+                );
+
+            } else {
+
+                input.type = "password";
+                button.textContent = "Show";
+                button.setAttribute(
+                    "aria-label",
+                    "Show password"
+                );
+
+            }
+
+        });
+
+    });
+
+});
+
+</script>
+
+{% endblock %}

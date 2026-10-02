@@ -1,0 +1,845 @@
+admin_webinar_form.css/* =========================================================
+   RICOZ WEBINARS
+   ADMIN — CREATE WEBINAR
+   PREMIUM CORPORATE UI
+========================================================= */
+
+:root {
+    --ricoz-red: #e31e24;
+    --ricoz-red-dark: #c8171d;
+    --ricoz-red-soft: #fff5f5;
+
+    --ink: #181818;
+    --text: #303030;
+    --muted: #777;
+    --subtle: #9a9a9a;
+
+    --line: #e9e9e9;
+    --line-dark: #dddddd;
+
+    --page: #f7f7f8;
+    --white: #ffffff;
+
+    --shadow-sm:
+        0 2px 8px rgba(0, 0, 0, 0.03);
+
+    --shadow-card:
+        0 10px 35px rgba(0, 0, 0, 0.055);
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.admin-form-page {
+    min-height: calc(100vh - 80px);
+
+    padding: 52px 0 90px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0,
+            #ffffff 205px,
+            var(--page) 205px,
+            var(--page) 100%
+        );
+}
+
+
+.admin-form-page .container {
+    width: min(1080px, calc(100% - 40px));
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.admin-form-header {
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-bottom: 34px;
+}
+
+
+.admin-form-eyebrow {
+    display: inline-flex;
+
+    align-items: center;
+
+    height: 27px;
+
+    padding: 0 10px;
+
+    border: 1px solid #f3d1d2;
+
+    border-radius: 6px;
+
+    background: var(--ricoz-red-soft);
+
+    color: var(--ricoz-red);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.admin-form-header h1 {
+    margin: 13px 0 8px;
+
+    color: var(--ink);
+
+    font-size: 38px;
+    font-weight: 780;
+
+    line-height: 1.12;
+
+    letter-spacing: -1.1px;
+}
+
+
+.admin-form-header p {
+    max-width: 610px;
+
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.65;
+}
+
+
+.admin-form-back {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+
+    padding: 0 17px;
+
+    border: 1px solid var(--line-dark);
+
+    border-radius: 8px;
+
+    background: var(--white);
+
+    color: var(--text);
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        0.2s ease;
+}
+
+
+.admin-form-back:hover {
+    border-color: var(--ricoz-red);
+
+    color: var(--ricoz-red);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.webinar-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+/* =========================================================
+   MAIN CARDS
+========================================================= */
+
+.form-card {
+    padding: 28px 30px;
+
+    border: 1px solid var(--line);
+
+    border-radius: 14px;
+
+    background: var(--white);
+
+    box-shadow: var(--shadow-card);
+}
+
+
+.form-card-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding-bottom: 20px;
+
+    margin-bottom: 24px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+.form-card-header > div {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.form-section-number {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 8px;
+
+    background: var(--ricoz-red-soft);
+
+    color: var(--ricoz-red);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.4px;
+}
+
+
+.form-card-header h2 {
+    margin: 0;
+
+    color: var(--ink);
+
+    font-size: 18px;
+    font-weight: 750;
+
+    letter-spacing: -0.2px;
+}
+
+
+.form-card-header p {
+    max-width: 310px;
+
+    margin: 0;
+
+    color: var(--subtle);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.form-row {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+/* =========================================================
+   FORM GROUP
+========================================================= */
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    margin-bottom: 19px;
+}
+
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+
+.form-group label {
+    margin-bottom: 7px;
+
+    color: var(--text);
+
+    font-size: 12px;
+    font-weight: 750;
+
+    letter-spacing: 0.1px;
+}
+
+
+.form-group label span {
+    margin-left: 2px;
+
+    color: var(--ricoz-red);
+}
+
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border: 1px solid var(--line-dark);
+
+    border-radius: 8px;
+
+    outline: none;
+
+    background: #fff;
+
+    color: var(--text);
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
+}
+
+
+.form-group input,
+.form-group select {
+    height: 45px;
+
+    padding: 0 13px;
+}
+
+
+.form-group textarea {
+    min-height: 125px;
+
+    padding: 12px 13px;
+
+    resize: vertical;
+
+    line-height: 1.6;
+}
+
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+    border-color: #cfcfcf;
+}
+
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--ricoz-red);
+
+    background: #fff;
+
+    box-shadow:
+        0 0 0 3px rgba(227, 30, 36, 0.075);
+}
+
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #ababab;
+}
+
+
+.form-group small {
+    margin-top: 6px;
+
+    color: #999;
+
+    font-size: 10.5px;
+
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   SELECT
+========================================================= */
+
+.form-group select {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   NUMBER INPUT
+========================================================= */
+
+.input-with-suffix {
+    position: relative;
+}
+
+
+.input-with-suffix input {
+    padding-right: 78px;
+}
+
+
+.input-with-suffix span {
+    position: absolute;
+
+    top: 50%;
+    right: 13px;
+
+    transform: translateY(-50%);
+
+    color: #888;
+
+    font-size: 11px;
+    font-weight: 650;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   PUBLISH CARD
+========================================================= */
+
+.publish-card {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    padding: 22px 26px;
+
+    border: 1px solid #f0d3d4;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            100deg,
+            #ffffff 0%,
+            #fff8f8 100%
+        );
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.035);
+}
+
+
+.publish-content {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+}
+
+
+.publish-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    flex: 0 0 42px;
+
+    border-radius: 10px;
+
+    background: var(--ricoz-red);
+
+    color: #fff;
+
+    font-size: 16px;
+    font-weight: 800;
+
+    box-shadow:
+        0 5px 15px rgba(227, 30, 36, 0.18);
+}
+
+
+.publish-content h2 {
+    margin: 0 0 4px;
+
+    color: var(--ink);
+
+    font-size: 15px;
+    font-weight: 750;
+}
+
+
+.publish-content p {
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   TOGGLE
+========================================================= */
+
+.publish-toggle {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    cursor: pointer;
+
+    user-select: none;
+}
+
+
+.publish-toggle input {
+    position: absolute;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+.toggle-track {
+    position: relative;
+
+    display: block;
+
+    width: 45px;
+    height: 25px;
+
+    border-radius: 30px;
+
+    background: #d4d4d4;
+
+    transition:
+        background 0.2s ease;
+}
+
+
+.toggle-thumb {
+    position: absolute;
+
+    top: 3px;
+    left: 3px;
+
+    width: 19px;
+    height: 19px;
+
+    border-radius: 50%;
+
+    background: #fff;
+
+    box-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.18);
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.publish-toggle input:checked + .toggle-track {
+    background: var(--ricoz-red);
+}
+
+
+.publish-toggle input:checked + .toggle-track .toggle-thumb {
+    transform: translateX(20px);
+}
+
+
+.toggle-label {
+    color: var(--text);
+
+    font-size: 11px;
+    font-weight: 750;
+}
+
+
+/* =========================================================
+   ACTION BAR
+========================================================= */
+
+.form-actions {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding-top: 3px;
+}
+
+
+.form-cancel,
+.form-submit {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    height: 46px;
+
+    padding: 0 19px;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 12px;
+    font-weight: 750;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        0.2s ease;
+}
+
+
+.form-cancel {
+    border: 1px solid var(--line-dark);
+
+    background: #fff;
+
+    color: var(--text);
+}
+
+
+.form-cancel:hover {
+    background: #fafafa;
+
+    border-color: #c9c9c9;
+}
+
+
+.form-submit {
+    gap: 9px;
+
+    border: 1px solid var(--ricoz-red);
+
+    background: var(--ricoz-red);
+
+    color: #fff;
+
+    box-shadow:
+        0 6px 16px rgba(227, 30, 36, 0.16);
+}
+
+
+.form-submit:hover {
+    background: var(--ricoz-red-dark);
+
+    border-color: var(--ricoz-red-dark);
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 9px 20px rgba(227, 30, 36, 0.22);
+}
+
+
+.form-submit span {
+    font-size: 16px;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .admin-form-page {
+        padding-top: 38px;
+    }
+
+
+    .admin-form-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .admin-form-header h1 {
+        font-size: 34px;
+    }
+
+
+    .admin-form-back {
+        width: fit-content;
+    }
+
+
+    .form-card {
+        padding: 24px;
+    }
+
+
+    .form-card-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+
+    .form-card-header p {
+        max-width: none;
+
+        text-align: left;
+    }
+
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+
+    .publish-card {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .publish-toggle {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .admin-form-page {
+        padding: 28px 0 55px;
+    }
+
+
+    .admin-form-page .container {
+        width: calc(100% - 24px);
+    }
+
+
+    .admin-form-header {
+        margin-bottom: 25px;
+    }
+
+
+    .admin-form-header h1 {
+        margin-top: 11px;
+
+        font-size: 29px;
+
+        letter-spacing: -0.7px;
+    }
+
+
+    .admin-form-header p {
+        font-size: 13px;
+    }
+
+
+    .form-card {
+        padding: 20px;
+
+        border-radius: 12px;
+    }
+
+
+    .form-card-header {
+        padding-bottom: 17px;
+
+        margin-bottom: 20px;
+    }
+
+
+    .form-card-header h2 {
+        font-size: 17px;
+    }
+
+
+    .form-section-number {
+        width: 32px;
+        height: 32px;
+    }
+
+
+    .publish-card {
+        padding: 20px;
+    }
+
+
+    .form-actions {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+
+    .form-cancel,
+    .form-submit {
+        width: 100%;
+    }
+}

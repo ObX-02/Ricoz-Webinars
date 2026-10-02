@@ -1,0 +1,387 @@
+/* =========================================
+   RICOZ WEBINARS
+   ERROR PAGES
+   PROFESSIONAL RED / WHITE
+========================================= */
+
+:root {
+    --error-red: #e31e24;
+    --error-red-dark: #c8171d;
+    --error-red-light: #fff3f3;
+
+    --error-black: #171717;
+    --error-text: #2b2b2b;
+    --error-muted: #777777;
+
+    --error-border: #eeeeee;
+    --error-white: #ffffff;
+}
+
+
+/* =========================================
+   ERROR PAGE
+========================================= */
+
+.error-page {
+    min-height: calc(100vh - 180px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 70px 24px;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(227, 30, 36, 0.07),
+            transparent 30%
+        ),
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #fafafa 100%
+        );
+}
+
+
+/* =========================================
+   ERROR CARD
+========================================= */
+
+.error-card {
+    width: 100%;
+    max-width: 680px;
+
+    padding: 60px 50px;
+
+    text-align: center;
+
+    background: var(--error-white);
+
+    border: 1px solid var(--error-border);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.07);
+
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* =========================================
+   TOP ACCENT
+========================================= */
+
+.error-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 5px;
+
+    background: linear-gradient(
+        90deg,
+        var(--error-red-dark),
+        var(--error-red),
+        #ef5350
+    );
+}
+
+
+/* =========================================
+   ERROR CODE
+========================================= */
+
+.error-code {
+    font-size: 110px;
+
+    line-height: 1;
+
+    font-weight: 900;
+
+    letter-spacing: -6px;
+
+    color: var(--error-red);
+
+    margin-bottom: 22px;
+}
+
+
+/* =========================================
+   EYEBROW
+========================================= */
+
+.error-eyebrow {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 8px 14px;
+
+    border-radius: 999px;
+
+    background: var(--error-red-light);
+
+    color: var(--error-red-dark);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+
+    margin-bottom: 18px;
+}
+
+
+/* =========================================
+   HEADING
+========================================= */
+
+.error-card h1 {
+    margin: 0 0 14px;
+
+    color: var(--error-black);
+
+    font-size: 34px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    letter-spacing: -0.8px;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.error-card p {
+    max-width: 500px;
+
+    margin: 0 auto;
+
+    color: var(--error-muted);
+
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.error-actions {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    flex-wrap: wrap;
+
+    margin-top: 32px;
+}
+
+
+/* =========================================
+   PRIMARY BUTTON
+========================================= */
+
+.error-primary {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    min-height: 50px;
+
+    padding: 0 22px;
+
+    border-radius: 10px;
+
+    background: var(--error-red);
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 8px 20px rgba(227, 30, 36, 0.20);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.error-primary:hover {
+    background: var(--error-red-dark);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 26px rgba(227, 30, 36, 0.25);
+}
+
+.error-primary span {
+    font-size: 18px;
+
+    transition: transform 0.2s ease;
+}
+
+.error-primary:hover span {
+    transform: translateX(3px);
+}
+
+
+/* =========================================
+   SECONDARY BUTTON
+========================================= */
+
+.error-secondary {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 50px;
+
+    padding: 0 22px;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: var(--error-black);
+
+    border: 1px solid #dddddd;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.error-secondary:hover {
+    background: #fafafa;
+
+    border-color: var(--error-red);
+
+    color: var(--error-red);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 700px) {
+
+    .error-page {
+        min-height: calc(100vh - 150px);
+
+        padding: 50px 18px;
+    }
+
+    .error-card {
+        padding: 50px 30px;
+
+        border-radius: 20px;
+    }
+
+    .error-code {
+        font-size: 88px;
+
+        letter-spacing: -4px;
+    }
+
+    .error-card h1 {
+        font-size: 29px;
+    }
+
+    .error-card p {
+        font-size: 15px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .error-page {
+        padding: 35px 14px;
+    }
+
+    .error-card {
+        padding: 42px 20px;
+
+        border-radius: 18px;
+    }
+
+    .error-code {
+        font-size: 72px;
+
+        letter-spacing: -3px;
+
+        margin-bottom: 18px;
+    }
+
+    .error-eyebrow {
+        font-size: 10px;
+
+        letter-spacing: 1.1px;
+    }
+
+    .error-card h1 {
+        font-size: 25px;
+    }
+
+    .error-card p {
+        font-size: 14px;
+
+        line-height: 1.65;
+    }
+
+    .error-actions {
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+    .error-primary,
+    .error-secondary {
+        width: 100%;
+    }
+}

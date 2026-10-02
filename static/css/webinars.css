@@ -1,0 +1,605 @@
+/* =========================================================
+   RICOZ WEBINARS
+   PROFESSIONAL RED & WHITE
+========================================================= */
+
+.webinars-page {
+    min-height: 100vh;
+    background: #f8f9fb;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.webinars-hero {
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            135deg,
+            #171717 0%,
+            #252525 55%,
+            #e31e24 100%
+        );
+    padding: 90px 24px 85px;
+}
+
+.webinars-hero::before {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    right: -120px;
+    top: -190px;
+}
+
+.webinars-hero::after {
+    content: "";
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    right: 70px;
+    bottom: -170px;
+}
+
+.webinars-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.section-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+}
+
+.webinars-hero h1 {
+    margin: 20px 0 16px;
+    max-width: 720px;
+    color: #ffffff;
+    font-size: clamp(42px, 6vw, 68px);
+    line-height: 1.04;
+    letter-spacing: -2px;
+}
+
+.webinars-hero p {
+    max-width: 690px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 17px;
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.webinars-content {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 70px 24px 100px;
+}
+
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.webinars-toolbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 38px;
+}
+
+.webinars-toolbar h2 {
+    margin: 0 0 7px;
+    color: #171717;
+    font-size: 30px;
+    letter-spacing: -0.7px;
+}
+
+.webinars-toolbar p {
+    margin: 0;
+    color: #777777;
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   CATEGORY FILTER
+========================================================= */
+
+.category-filter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.category-btn {
+    border: 1px solid #e1e3e7;
+    background: #ffffff;
+    color: #555555;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.category-btn:hover {
+    border-color: #e31e24;
+    color: #e31e24;
+    transform: translateY(-1px);
+}
+
+.category-btn.active {
+    background: #e31e24;
+    border-color: #e31e24;
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   WEBINAR GRID
+========================================================= */
+
+.webinars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+
+/* =========================================================
+   WEBINAR CARD
+========================================================= */
+
+.webinar-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #e7e7e9;
+    border-radius: 20px;
+    box-shadow: 0 8px 28px rgba(23, 23, 23, 0.05);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.webinar-card:hover {
+    transform: translateY(-6px);
+    border-color: #f1b5b7;
+    box-shadow: 0 18px 42px rgba(23, 23, 23, 0.1);
+}
+
+
+/* =========================================================
+   CARD TOP
+========================================================= */
+
+.webinar-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 20px 20px 0;
+}
+
+.webinar-category {
+    display: inline-flex;
+    max-width: 65%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 7px 11px;
+    border-radius: 8px;
+    background: #fff2f2;
+    color: #c8171d;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.webinar-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 9px;
+    border-radius: 7px;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.webinar-status.upcoming {
+    background: #f3f4f6;
+    color: #555555;
+}
+
+.webinar-status.live {
+    background: #fff1f1;
+    color: #c8171d;
+}
+
+.webinar-status.completed {
+    background: #f1f1f1;
+    color: #666666;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #e31e24;
+    animation: livePulse 1.6s infinite;
+}
+
+@keyframes livePulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.45;
+        transform: scale(0.75);
+    }
+}
+
+
+/* =========================================================
+   CARD ICON
+========================================================= */
+
+.webinar-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    margin: 22px 20px 4px;
+    border-radius: 16px;
+    background: #e31e24;
+    box-shadow: 0 10px 22px rgba(227, 30, 36, 0.18);
+}
+
+.webinar-card-icon span {
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   CARD BODY
+========================================================= */
+
+.webinar-card-body {
+    flex: 1;
+    padding: 18px 20px 20px;
+}
+
+.webinar-card-body h3 {
+    margin: 0 0 12px;
+    color: #171717;
+    font-size: 20px;
+    line-height: 1.3;
+    letter-spacing: -0.3px;
+}
+
+.webinar-card-body p {
+    display: -webkit-box;
+    overflow: hidden;
+    margin: 0 0 20px;
+    color: #707070;
+    font-size: 14px;
+    line-height: 1.65;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+
+/* =========================================================
+   META
+========================================================= */
+
+.webinar-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    padding-top: 16px;
+    border-top: 1px solid #eeeeef;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #666666;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.meta-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+    border-radius: 7px;
+    background: #fff3f3;
+    color: #e31e24;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   SPEAKER
+========================================================= */
+
+.speaker-preview {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.speaker-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #171717;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.speaker-preview div:last-child {
+    min-width: 0;
+}
+
+.speaker-preview strong {
+    display: block;
+    overflow: hidden;
+    color: #303030;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.speaker-preview span {
+    display: block;
+    overflow: hidden;
+    margin-top: 2px;
+    color: #888888;
+    font-size: 11px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   CARD FOOTER
+========================================================= */
+
+.webinar-card-footer {
+    padding: 0 20px 20px;
+}
+
+.webinar-view-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #eeeeef;
+    border-radius: 11px;
+    color: #222222;
+    background: #ffffff;
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.webinar-view-btn span {
+    color: #e31e24;
+    font-size: 17px;
+    transition: transform 0.2s ease;
+}
+
+.webinar-view-btn:hover {
+    background: #e31e24;
+    border-color: #e31e24;
+    color: #ffffff;
+}
+
+.webinar-view-btn:hover span {
+    color: #ffffff;
+    transform: translateX(3px);
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty-webinars,
+.no-filter-results {
+    padding: 75px 30px;
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #e7e7e9;
+    border-radius: 20px;
+}
+
+.empty-webinars-icon,
+.empty-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 22px;
+    border-radius: 18px;
+    background: #fff2f2;
+    color: #e31e24;
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.empty-webinars h3,
+.no-filter-results h3 {
+    margin: 0 0 10px;
+    color: #222222;
+    font-size: 23px;
+}
+
+.empty-webinars p,
+.no-filter-results p {
+    max-width: 500px;
+    margin: 0 auto 24px;
+    color: #777777;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.empty-home-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    border-radius: 10px;
+    background: #e31e24;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.empty-home-btn:hover {
+    background: #c8171d;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .webinars-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .webinars-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .category-filter {
+        justify-content: flex-start;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 680px) {
+
+    .webinars-hero {
+        padding: 65px 20px 60px;
+    }
+
+    .webinars-hero h1 {
+        font-size: 42px;
+        letter-spacing: -1.5px;
+    }
+
+    .webinars-hero p {
+        font-size: 15px;
+    }
+
+    .webinars-content {
+        padding: 50px 18px 75px;
+    }
+
+    .webinars-toolbar {
+        margin-bottom: 28px;
+    }
+
+    .webinars-toolbar h2 {
+        font-size: 26px;
+    }
+
+    .category-filter {
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        padding-bottom: 5px;
+    }
+
+    .category-btn {
+        flex-shrink: 0;
+    }
+
+    .webinars-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .webinar-card {
+        border-radius: 17px;
+    }
+
+    .empty-webinars,
+    .no-filter-results {
+        padding: 55px 20px;
+    }
+
+}
