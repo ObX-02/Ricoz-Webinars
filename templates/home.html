@@ -1,9 +1,13 @@
+
 {% extends "base.html" %}
 
 {% block title %}Home | Ricoz Webinars{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/home.css') }}"
+>
 {% endblock %}
 
 {% block content %}
@@ -24,7 +28,7 @@
 
             <div class="hero-label">
                 <span></span>
-                RICOZ WEBINARS
+               <b>RICOZ WEBINARS</b> 
             </div>
 
             <h1>
@@ -96,15 +100,12 @@
         </div>
 
 
-        <!-- =====================================================
-             WEBINAR WINDOW
-        ====================================================== -->
-
+        <!-- HERO WEBINAR -->
         <div class="hero-webinar">
 
             <div class="webinar-window">
 
-                <!-- WINDOW HEADER -->
+                <!-- WEBINAR HEADER -->
                 <div class="webinar-header">
 
                     <div class="webinar-brand">
@@ -113,13 +114,19 @@
                             R
                         </div>
 
-                        <div>
-                            <strong>RICOZ WEBINAR</strong>
-                            <span>Professional Learning Platform</span>
+                        <div class="webinar-brand-text">
+
+                            <strong>
+                                RICOZ WEBINAR
+                            </strong>
+
+                            <span>
+                                Professional Learning Platform
+                            </span>
+
                         </div>
 
                     </div>
-
 
                     <div class="live-indicator">
                         <span></span>
@@ -129,32 +136,137 @@
                 </div>
 
 
-                <!-- VIDEO AREA -->
+                <!-- WEBINAR SCREEN -->
                 <div class="webinar-screen">
 
-    <img
-        src="{{ url_for('static', filename='images/webinar-live.jpg') }}"
-        alt="Ricoz Live Webinar"
-        class="webinar-live-image"
-    >
+                    <!-- YOUR IMAGE -->
+                    <img
+                        src="{{ url_for('static', filename='images/webinar-live.jpg') }}"
+                        alt="Ricoz Live Webinar"
+                        class="webinar-live-image"
+                    >
 
-    <div class="webinar-screen-overlay"></div>
+                    <div class="webinar-screen-overlay"></div>
 
-    <div class="webinar-live-badge">
-        <span></span>
-        LIVE
-    </div>
 
-    <div class="watching-count">
-        <span></span>
-        248 watching
-    </div>
+                    <!-- LIVE BADGE -->
+                    <div class="webinar-live-badge">
+                        <span></span>
+                        LIVE
+                    </div>
 
-</div>
 
+                    <!-- SESSION TITLE -->
+                    <div class="webinar-session-title">
+
+                        <span class="session-label">
+                            RICOZ WEBINAR
+                        </span>
+
+                        <h2>
+                            Expert-led
+                            <br>
+                            Live Session
+                        </h2>
+
+                        <p>
+                            Learn. Connect. Grow.
+                        </p>
+
+                    </div>
+
+
+                    <!-- WATCHING COUNT -->
                     <div class="watching-count">
                         <span></span>
                         248 watching
+                    </div>
+
+
+                    <!-- SPEAKER -->
+                    <div class="speaker-overlay">
+
+                        <div class="speaker-avatar">
+                            R
+                        </div>
+
+                        <div class="speaker-information">
+
+                            <strong>
+                                Ricoz Expert
+                            </strong>
+
+                            <span>
+                                Industry Speaker
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- STUDENT COMMENTS -->
+                    <div class="student-comments">
+
+                        <div class="student-comment comment-one">
+
+                            <span class="comment-avatar">
+                                S
+                            </span>
+
+                            <div>
+                                <strong>Sarah</strong>
+
+                                <p>
+                                    This is so helpful! ❤️
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="student-comment comment-two">
+
+                            <span class="comment-avatar">
+                                A
+                            </span>
+
+                            <div>
+                                <strong>Alex</strong>
+
+                                <p>
+                                    Great session! 🔥
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="student-comment comment-three">
+
+                            <span class="comment-avatar">
+                                M
+                            </span>
+
+                            <div>
+                                <strong>Michael</strong>
+
+                                <p>
+                                    Can you share the slides?
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- REACTIONS -->
+                    <div class="live-reactions">
+                        <span>❤️</span>
+                        <span>👍</span>
+                        <span>🔥</span>
+                        <span>👏</span>
                     </div>
 
                 </div>
@@ -188,7 +300,7 @@
             </div>
 
 
-            <!-- FLOATING INFO -->
+            <!-- FLOATING INFO CARD -->
             <div class="floating-info floating-info-one">
 
                 <div class="floating-check">
@@ -196,17 +308,30 @@
                 </div>
 
                 <div>
-                    <strong>Expert Session</strong>
-                    <span>Live & Interactive</span>
+
+                    <strong>
+                        Expert Session
+                    </strong>
+
+                    <span>
+                        Live & Interactive
+                    </span>
+
                 </div>
 
             </div>
 
 
+            <!-- PEOPLE LEARNING CARD -->
             <div class="floating-info floating-info-two">
 
-                <strong>248+</strong>
-                <span>People learning</span>
+                <strong>
+                    248+
+                </strong>
+
+                <span>
+                    People learning
+                </span>
 
             </div>
 
@@ -215,7 +340,6 @@
     </div>
 
 </section>
-
 
 
 <!-- =========================================================
@@ -263,21 +387,23 @@
 
                 {% if featured_webinar.category_name %}
 
-                <span class="featured-category">
-                    {{ featured_webinar.category_name }}
-                </span>
+                    <span class="featured-category">
+                        {{ featured_webinar.category_name }}
+                    </span>
 
                 {% endif %}
+
 
                 <h3>
                     {{ featured_webinar.title }}
                 </h3>
 
+
                 {% if featured_webinar.description %}
 
-                <p>
-                    {{ featured_webinar.description }}
-                </p>
+                    <p>
+                        {{ featured_webinar.description }}
+                    </p>
 
                 {% endif %}
 
@@ -286,39 +412,56 @@
 
                     {% if featured_webinar.scheduled_at %}
 
-                    <div>
-                        <small>Date & Time</small>
+                        <div>
 
-                        <strong>
-                            {{ featured_webinar.scheduled_at.strftime('%d %b %Y, %I:%M %p') }}
-                        </strong>
-                    </div>
+                            <small>
+                                Date & Time
+                            </small>
+
+                            <strong>
+                                {{
+                                    featured_webinar.scheduled_at.strftime(
+                                        '%d %b %Y, %I:%M %p'
+                                    )
+                                }}
+                            </strong>
+
+                        </div>
 
                     {% endif %}
 
 
                     {% if featured_webinar.duration_minutes %}
 
-                    <div>
-                        <small>Duration</small>
+                        <div>
 
-                        <strong>
-                            {{ featured_webinar.duration_minutes }} minutes
-                        </strong>
-                    </div>
+                            <small>
+                                Duration
+                            </small>
+
+                            <strong>
+                                {{ featured_webinar.duration_minutes }}
+                                minutes
+                            </strong>
+
+                        </div>
 
                     {% endif %}
 
 
                     {% if featured_webinar.speaker_name %}
 
-                    <div>
-                        <small>Speaker</small>
+                        <div>
 
-                        <strong>
-                            {{ featured_webinar.speaker_name }}
-                        </strong>
-                    </div>
+                            <small>
+                                Speaker
+                            </small>
+
+                            <strong>
+                                {{ featured_webinar.speaker_name }}
+                            </strong>
+
+                        </div>
 
                     {% endif %}
 
@@ -343,10 +486,8 @@
                 </span>
 
                 <strong>
-                    LEARN
-                    <br>
-                    CONNECT
-                    <br>
+                    LEARN<br>
+                    CONNECT<br>
                     GROW
                 </strong>
 
@@ -365,15 +506,15 @@
 {% endif %}
 
 
-
 <!-- =========================================================
-     TOPICS
+     LEARN WHAT MATTERS
 ========================================================= -->
 
 <section class="topics-section">
 
     <div class="home-container">
 
+        <!-- SECTION HEADING -->
         <div class="section-heading centered">
 
             <span class="section-label">
@@ -392,100 +533,264 @@
         </div>
 
 
+        <!-- TOPIC CARDS -->
         <div class="topic-grid">
 
+
+            <!-- =================================================
+                 SECURITY CARD
+            ================================================== -->
+
             <a
                 href="{{ url_for('webinars') }}"
-                class="topic-card"
+                class="topic-card topic-security"
             >
 
-                <div class="topic-icon">
-                    01
+                <div class="topic-visual">
+
+                    <div class="visual-glow"></div>
+
+                    <div class="security-avatar">
+
+                        <div class="shield-shape">
+                            <span>✓</span>
+                        </div>
+
+                        <div class="security-ring ring-one"></div>
+
+                        <div class="security-ring ring-two"></div>
+
+                        <span class="security-dot dot-one"></span>
+                        <span class="security-dot dot-two"></span>
+                        <span class="security-dot dot-three"></span>
+
+                    </div>
+
+                    <span class="visual-floating visual-lock">
+                        🔒
+                    </span>
+
+                    <span class="visual-floating visual-code">
+                        &lt;/&gt;
+                    </span>
+
                 </div>
 
-                <h3>
-                    Security
-                </h3>
 
-                <p>
-                    Cybersecurity, privacy and digital protection.
-                </p>
+                <div class="topic-content">
 
-                <span>
-                    Explore →
-                </span>
+                    <div class="topic-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Security
+                    </h3>
+
+                    <p>
+                        Cybersecurity, privacy and digital protection.
+                    </p>
+
+                    <span class="topic-link">
+                        Explore
+                        <strong>→</strong>
+                    </span>
+
+                </div>
 
             </a>
 
 
+            <!-- =================================================
+                 PRODUCT CARD
+            ================================================== -->
+
             <a
                 href="{{ url_for('webinars') }}"
-                class="topic-card"
+                class="topic-card topic-product"
             >
 
-                <div class="topic-icon">
-                    02
+                <div class="topic-visual">
+
+                    <div class="visual-glow"></div>
+
+                    <div class="product-avatar">
+
+                        <div class="product-screen">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                        <div class="product-base"></div>
+
+                    </div>
+
+                    <span class="visual-floating visual-chart">
+                        ↗
+                    </span>
+
+                    <span class="visual-floating visual-box">
+                        □
+                    </span>
+
                 </div>
 
-                <h3>
-                    Product
-                </h3>
 
-                <p>
-                    Product knowledge, strategy and innovation.
-                </p>
+                <div class="topic-content">
 
-                <span>
-                    Explore →
-                </span>
+                    <div class="topic-number">
+                        02
+                    </div>
+
+                    <h3>
+                        Product
+                    </h3>
+
+                    <p>
+                        Product knowledge, strategy and innovation.
+                    </p>
+
+                    <span class="topic-link">
+                        Explore
+                        <strong>→</strong>
+                    </span>
+
+                </div>
 
             </a>
 
 
+            <!-- =================================================
+                 CUSTOMER EDUCATION CARD
+            ================================================== -->
+
             <a
                 href="{{ url_for('webinars') }}"
-                class="topic-card"
+                class="topic-card topic-education"
             >
 
-                <div class="topic-icon">
-                    03
+                <div class="topic-visual">
+
+                    <div class="visual-glow"></div>
+
+                    <div class="education-avatar">
+
+                        <div class="person-head"></div>
+
+                        <div class="person-body">
+                            <span></span>
+                        </div>
+
+                        <div class="education-board">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                    </div>
+
+                    <span class="visual-floating visual-book">
+                        ▤
+                    </span>
+
+                    <span class="visual-floating visual-star">
+                        ✦
+                    </span>
+
                 </div>
 
-                <h3>
-                    Customer Education
-                </h3>
 
-                <p>
-                    Practical guidance and useful customer insights.
-                </p>
+                <div class="topic-content">
 
-                <span>
-                    Explore →
-                </span>
+                    <div class="topic-number">
+                        03
+                    </div>
+
+                    <h3>
+                        Customer Education
+                    </h3>
+
+                    <p>
+                        Practical guidance and useful customer insights.
+                    </p>
+
+                    <span class="topic-link">
+                        Explore
+                        <strong>→</strong>
+                    </span>
+
+                </div>
 
             </a>
 
 
+            <!-- =================================================
+                 TECHNOLOGY CARD
+            ================================================== -->
+
             <a
                 href="{{ url_for('webinars') }}"
-                class="topic-card"
+                class="topic-card topic-technology"
             >
 
-                <div class="topic-icon">
-                    04
+                <div class="topic-visual">
+
+                    <div class="visual-glow"></div>
+
+                    <div class="technology-avatar">
+
+                        <div class="laptop-screen">
+
+                            <div class="screen-line line-one"></div>
+                            <div class="screen-line line-two"></div>
+                            <div class="screen-line line-three"></div>
+
+                            <span class="screen-cursor">
+                                _
+                            </span>
+
+                        </div>
+
+                        <div class="laptop-base"></div>
+
+                    </div>
+
+                    <span class="visual-floating visual-wifi">
+                        ⌁
+                    </span>
+
+                    <span class="visual-floating visual-chip">
+                        ◆
+                    </span>
+
                 </div>
 
-                <h3>
-                    Technology
-                </h3>
 
-                <p>
-                    Technology, digital tools and modern trends.
-                </p>
+                <div class="topic-content">
 
-                <span>
-                    Explore →
-                </span>
+                    <div class="topic-number">
+                        04
+                    </div>
+
+                    <h3>
+                        Technology
+                    </h3>
+
+                    <p>
+                        Technology, digital tools and modern trends.
+                    </p>
+
+                    <span class="topic-link">
+                        Explore
+                        <strong>→</strong>
+                    </span>
+
+                </div>
 
             </a>
 
@@ -494,7 +799,6 @@
     </div>
 
 </section>
-
 
 
 <!-- =========================================================
@@ -535,136 +839,142 @@
 
         {% if upcoming_webinars %}
 
-        <div class="upcoming-grid">
+            <div class="upcoming-grid">
 
-            {% for webinar in upcoming_webinars %}
+                {% for webinar in upcoming_webinars %}
 
-            <article class="upcoming-card">
+                    <article class="upcoming-card">
 
-                <div class="upcoming-header">
-
-                    <span>
-                        {% if webinar.category_name %}
-                            {{ webinar.category_name }}
-                        {% else %}
-                            Webinar
-                        {% endif %}
-                    </span>
-
-                    <b>
-                        UPCOMING
-                    </b>
-
-                </div>
-
-
-                <div class="upcoming-content">
-
-                    <h3>
-                        {{ webinar.title }}
-                    </h3>
-
-                    {% if webinar.description %}
-
-                    <p>
-                        {{ webinar.description|truncate(125) }}
-                    </p>
-
-                    {% endif %}
-
-
-                    {% if webinar.speaker_name %}
-
-                    <div class="upcoming-speaker">
-
-                        <div class="speaker-initial">
-                            {{ webinar.speaker_name[0]|upper }}
-                        </div>
-
-                        <div>
-                            <small>Speaker</small>
-
-                            <strong>
-                                {{ webinar.speaker_name }}
-                            </strong>
-                        </div>
-
-                    </div>
-
-                    {% endif %}
-
-
-                    {% if webinar.scheduled_at %}
-
-                    <div class="upcoming-time">
-
-                        <div class="date-box">
-                            {{ webinar.scheduled_at.strftime('%d') }}
-                        </div>
-
-                        <div>
-                            <strong>
-                                {{ webinar.scheduled_at.strftime('%b %Y') }}
-                            </strong>
+                        <div class="upcoming-header">
 
                             <span>
-                                {{ webinar.scheduled_at.strftime('%I:%M %p') }}
+                                {% if webinar.category_name %}
+                                    {{ webinar.category_name }}
+                                {% else %}
+                                    Webinar
+                                {% endif %}
                             </span>
+
+                            <b>
+                                UPCOMING
+                            </b>
+
                         </div>
 
-                    </div>
 
-                    {% endif %}
+                        <div class="upcoming-content">
+
+                            <h3>
+                                {{ webinar.title }}
+                            </h3>
 
 
-                    <a
-                        href="{{ url_for('webinar_detail', slug=webinar.slug) }}"
-                        class="upcoming-link"
-                    >
-                        View Details
-                        <span>→</span>
-                    </a>
+                            {% if webinar.description %}
 
-                </div>
+                                <p>
+                                    {{ webinar.description|truncate(125) }}
+                                </p>
 
-            </article>
+                            {% endif %}
 
-            {% endfor %}
 
-        </div>
+                            {% if webinar.speaker_name %}
+
+                                <div class="upcoming-speaker">
+
+                                    <div class="speaker-initial">
+                                        {{ webinar.speaker_name[0]|upper }}
+                                    </div>
+
+                                    <div>
+
+                                        <small>
+                                            Speaker
+                                        </small>
+
+                                        <strong>
+                                            {{ webinar.speaker_name }}
+                                        </strong>
+
+                                    </div>
+
+                                </div>
+
+                            {% endif %}
+
+
+                            {% if webinar.scheduled_at %}
+
+                                <div class="upcoming-time">
+
+                                    <div class="date-box">
+                                        {{ webinar.scheduled_at.strftime('%d') }}
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            {{ webinar.scheduled_at.strftime('%b %Y') }}
+                                        </strong>
+
+                                        <span>
+                                            {{ webinar.scheduled_at.strftime('%I:%M %p') }}
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            {% endif %}
+
+
+                            <a
+                                href="{{ url_for('webinar_detail', slug=webinar.slug) }}"
+                                class="upcoming-link"
+                            >
+                                View Details
+                                <span>→</span>
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                {% endfor %}
+
+            </div>
 
         {% else %}
 
-        <div class="empty-state">
+            <div class="empty-state">
 
-            <div class="empty-icon">
-                +
+                <div class="empty-icon">
+                    +
+                </div>
+
+                <h3>
+                    No Upcoming Webinars
+                </h3>
+
+                <p>
+                    New webinars will appear here soon.
+                </p>
+
+                <a
+                    href="{{ url_for('webinars') }}"
+                    class="dark-button"
+                >
+                    Browse Webinars
+                    <span>→</span>
+                </a>
+
             </div>
-
-            <h3>
-                No Upcoming Webinars
-            </h3>
-
-            <p>
-                New webinars will appear here soon.
-            </p>
-
-            <a
-                href="{{ url_for('webinars') }}"
-                class="dark-button"
-            >
-                Browse Webinars
-                <span>→</span>
-            </a>
-
-        </div>
 
         {% endif %}
 
     </div>
 
 </section>
-
 
 
 <!-- =========================================================
@@ -684,8 +994,7 @@
                 </span>
 
                 <h2>
-                    Keep learning.
-                    Keep growing.
+                    Keep learning. Keep growing.
                 </h2>
 
                 <p>
@@ -709,4 +1018,6 @@
 
 </section>
 
+
 {% endblock %}
+```
