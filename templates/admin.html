@@ -6,455 +6,553 @@
 
 <section class="admin-page">
 
-```
-<div class="admin-container">
+    <div class="admin-container">
 
-    <!-- HEADER -->
-    <div class="admin-header">
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
 
-        <div>
+        <div class="admin-header">
 
-            <span class="admin-eyebrow">
-                RICOZ WEBINARS
-            </span>
+            <div class="admin-header-content">
 
-            <h1>
-                Admin Dashboard
-            </h1>
-
-            <p>
-                Manage your webinars, registrations and platform
-                content from one central dashboard.
-            </p>
-
-        </div>
-
-        <div class="admin-header-badge">
-            <span class="admin-status-dot"></span>
-            Admin Access
-        </div>
-
-    </div>
-
-
-    <!-- STATS -->
-    <div class="admin-stats">
-
-        <div class="admin-stat-card">
-
-            <div class="admin-stat-icon">
-                ◉
-            </div>
-
-            <div>
-                <span>
-                    Total Webinars
+                <span class="admin-eyebrow">
+                    RICOZ WEBINARS
                 </span>
 
-                <strong>
-                    {{ webinars|length }}
-                </strong>
+                <h1>
+                    Admin Dashboard
+                </h1>
+
+                <p>
+                    Manage your webinars, registrations and platform
+                    content from one central dashboard.
+                </p>
+
+            </div>
+
+            <div class="admin-header-badge">
+                <span class="admin-status-dot"></span>
+                Admin Access
             </div>
 
         </div>
 
 
-        <div class="admin-stat-card">
+        <!-- =====================================================
+             STATS
+        ====================================================== -->
 
-            <div class="admin-stat-icon">
-                ◷
-            </div>
+        <div class="admin-stats">
 
-            <div>
-                <span>
-                    Upcoming
-                </span>
+            <div class="admin-stat-card">
 
-                <strong>
-                    {{ upcoming_count|default(0) }}
-                </strong>
-            </div>
-
-        </div>
-
-
-        <div class="admin-stat-card">
-
-            <div class="admin-stat-icon">
-                ✓
-            </div>
-
-            <div>
-                <span>
-                    Registrations
-                </span>
-
-                <strong>
-                    {{ registration_count|default(0) }}
-                </strong>
-            </div>
-
-        </div>
-
-
-        <div class="admin-stat-card">
-
-            <div class="admin-stat-icon">
-                ▶
-            </div>
-
-            <div>
-                <span>
-                    Completed
-                </span>
-
-                <strong>
-                    {{ completed_count|default(0) }}
-                </strong>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- QUICK ACTIONS -->
-    <section class="admin-section">
-
-        <div class="admin-section-header">
-
-            <div>
-
-                <span class="admin-section-eyebrow">
-                    MANAGEMENT
-                </span>
-
-                <h2>
-                    Quick Actions
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <div class="quick-actions">
-
-            <!-- CREATE WEBINAR -->
-
-            <a
-                href="{{ url_for('create_webinar') }}"
-                class="quick-action"
-            >
-
-                <div class="quick-action-icon">
-                    +
-                </div>
-
-                <div>
-
-                    <strong>
-                        Create Webinar
-                    </strong>
-
-                    <span>
-                        Schedule and publish a new webinar
-                    </span>
-
-                </div>
-
-                <b>→</b>
-
-            </a>
-
-
-            <!-- VIEW WEBINARS -->
-
-            <a
-                href="{{ url_for('webinars') }}"
-                class="quick-action"
-            >
-
-                <div class="quick-action-icon">
+                <div class="admin-stat-icon">
                     ◉
                 </div>
 
-                <div>
-
-                    <strong>
-                        View Webinars
-                    </strong>
+                <div class="admin-stat-content">
 
                     <span>
-                        Browse all published webinars
+                        Total Webinars
                     </span>
-
-                </div>
-
-                <b>→</b>
-
-            </a>
-
-
-            <!-- VIEW WEBSITE -->
-
-            <a
-                href="{{ url_for('home') }}"
-                class="quick-action"
-            >
-
-                <div class="quick-action-icon">
-                    ⌂
-                </div>
-
-                <div>
 
                     <strong>
-                        View Website
+                        {{ webinars|length }}
                     </strong>
 
-                    <span>
-                        Open the public Ricoz website
-                    </span>
-
                 </div>
-
-                <b>→</b>
-
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- WEBINAR MANAGEMENT -->
-    <section class="admin-section">
-
-        <div class="admin-section-header">
-
-            <div>
-
-                <span class="admin-section-eyebrow">
-                    CONTENT
-                </span>
-
-                <h2>
-                    Webinar Management
-                </h2>
 
             </div>
 
-            <a
-                href="{{ url_for('webinars') }}"
-                class="admin-view-link"
-            >
-                Public View →
-            </a>
+
+            <div class="admin-stat-card">
+
+                <div class="admin-stat-icon">
+                    ◷
+                </div>
+
+                <div class="admin-stat-content">
+
+                    <span>
+                        Upcoming
+                    </span>
+
+                    <strong>
+                        {{ upcoming_count|default(0) }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-stat-card">
+
+                <div class="admin-stat-icon">
+                    ✓
+                </div>
+
+                <div class="admin-stat-content">
+
+                    <span>
+                        Registrations
+                    </span>
+
+                    <strong>
+                        {{ registration_count|default(0) }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-stat-card">
+
+                <div class="admin-stat-icon">
+                    ▶
+                </div>
+
+                <div class="admin-stat-content">
+
+                    <span>
+                        Completed
+                    </span>
+
+                    <strong>
+                        {{ completed_count|default(0) }}
+                    </strong>
+
+                </div>
+
+            </div>
 
         </div>
 
 
-        {% if webinars %}
+        <!-- =====================================================
+             QUICK ACTIONS
+        ====================================================== -->
 
-            <div class="admin-table-wrapper">
+        <section class="admin-section quick-actions-section">
 
-                <table class="admin-table">
+            <div class="admin-section-header">
 
-                    <thead>
+                <div>
 
-                        <tr>
+                    <span class="admin-section-eyebrow">
+                        MANAGEMENT
+                    </span>
 
-                            <th>
-                                Webinar
-                            </th>
+                    <h2>
+                        Quick Actions
+                    </h2>
 
-                            <th>
-                                Category
-                            </th>
+                    <p class="admin-section-description">
+                        Quickly access the most important areas of your
+                        webinar platform.
+                    </p>
 
-                            <th>
-                                Date
-                            </th>
-
-                            <th>
-                                Status
-                            </th>
-
-                            <th>
-                                Action
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody>
-
-                        {% for webinar in webinars %}
-
-                            <tr>
-
-                                <td>
-
-                                    <div class="table-webinar">
-
-                                        <div class="table-webinar-icon">
-                                            R
-                                        </div>
-
-                                        <div>
-
-                                            <strong>
-                                                {{ webinar.title }}
-                                            </strong>
-
-                                            <span>
-                                                {{ webinar.slug }}
-                                            </span>
-
-                                        </div>
-
-                                    </div>
-
-                                </td>
-
-
-                                <td>
-
-                                    <span class="table-category">
-                                        {{ webinar.category_name or 'General' }}
-                                    </span>
-
-                                </td>
-
-
-                                <td>
-
-                                    <span class="table-date">
-                                        {{ webinar.scheduled_at or 'Not scheduled' }}
-                                    </span>
-
-                                </td>
-
-
-                                <td>
-
-                                    {% if webinar.status|lower == 'live' %}
-
-                                        <span class="table-status live">
-                                            <i></i>
-                                            Live
-                                        </span>
-
-                                    {% elif webinar.status|lower == 'completed' %}
-
-                                        <span class="table-status completed">
-                                            Completed
-                                        </span>
-
-                                    {% elif webinar.status|lower == 'cancelled' %}
-
-                                        <span class="table-status cancelled">
-                                            Cancelled
-                                        </span>
-
-                                    {% else %}
-
-                                        <span class="table-status upcoming">
-                                            Upcoming
-                                        </span>
-
-                                    {% endif %}
-
-                                </td>
-
-
-                                <td>
-
-                                    <a
-                                        href="{{ url_for('webinar_detail', slug=webinar.slug) }}"
-                                        class="table-action"
-                                    >
-                                        View
-                                    </a>
-
-                                </td>
-
-                            </tr>
-
-                        {% endfor %}
-
-                    </tbody>
-
-                </table>
+                </div>
 
             </div>
 
-        {% else %}
 
-            <div class="admin-empty">
+            <div class="quick-actions">
 
-                <div class="admin-empty-icon">
-                    R
-                </div>
 
-                <h3>
-                    Your webinar catalog is empty
-                </h3>
-
-                <p>
-                    Create your first webinar to start building
-                    your Ricoz learning calendar.
-                </p>
+                <!-- CREATE WEBINAR -->
 
                 <a
                     href="{{ url_for('create_webinar') }}"
-                    class="admin-primary-button"
+                    class="quick-action quick-action-primary"
                 >
-                    Create First Webinar
+
+                    <div class="quick-action-top">
+
+                        <div class="quick-action-icon">
+                            +
+                        </div>
+
+                        <span class="quick-action-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                    <div class="quick-action-content">
+
+                        <strong>
+                            Create Webinar
+                        </strong>
+
+                        <span>
+                            Schedule and publish a new webinar
+                        </span>
+
+                    </div>
+
+                    <div class="quick-action-label">
+                        CREATE NEW
+                    </div>
+
+                </a>
+
+
+                <!-- VIEW WEBINARS -->
+
+                <a
+                    href="{{ url_for('webinars') }}"
+                    class="quick-action"
+                >
+
+                    <div class="quick-action-top">
+
+                        <div class="quick-action-icon">
+                            ◉
+                        </div>
+
+                        <span class="quick-action-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                    <div class="quick-action-content">
+
+                        <strong>
+                            View Webinars
+                        </strong>
+
+                        <span>
+                            Browse all published webinars
+                        </span>
+
+                    </div>
+
+                    <div class="quick-action-label">
+                        PUBLIC CATALOG
+                    </div>
+
+                </a>
+
+
+                <!-- VIEW WEBSITE -->
+
+                <a
+                    href="{{ url_for('home') }}"
+                    class="quick-action"
+                >
+
+                    <div class="quick-action-top">
+
+                        <div class="quick-action-icon">
+                            ⌂
+                        </div>
+
+                        <span class="quick-action-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                    <div class="quick-action-content">
+
+                        <strong>
+                            View Website
+                        </strong>
+
+                        <span>
+                            Open the public Ricoz website
+                        </span>
+
+                    </div>
+
+                    <div class="quick-action-label">
+                        PUBLIC WEBSITE
+                    </div>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             WEBINAR MANAGEMENT
+        ====================================================== -->
+
+        <section class="admin-section webinar-management-section">
+
+            <div class="admin-section-header">
+
+                <div>
+
+                    <span class="admin-section-eyebrow">
+                        CONTENT
+                    </span>
+
+                    <h2>
+                        Webinar Management
+                    </h2>
+
+                    <p class="admin-section-description">
+                        Manage and review all webinars available on
+                        the Ricoz platform.
+                    </p>
+
+                </div>
+
+                <a
+                    href="{{ url_for('webinars') }}"
+                    class="admin-view-link"
+                >
+                    Public View
                     <span>→</span>
                 </a>
 
             </div>
 
-        {% endif %}
 
-    </section>
+            {% if webinars %}
+
+                <div class="admin-table-card">
+
+                    <div class="admin-table-heading">
+
+                        <div>
+
+                            <strong>
+                                All Webinars
+                            </strong>
+
+                            <span>
+                                {{ webinars|length }} webinar{% if webinars|length != 1 %}s{% endif %} in your catalog
+                            </span>
+
+                        </div>
+
+                        <a
+                            href="{{ url_for('create_webinar') }}"
+                            class="admin-small-button"
+                        >
+                            <span>+</span>
+                            New Webinar
+                        </a>
+
+                    </div>
 
 
-    <!-- ADMIN NOTE -->
-    <section class="admin-info">
+                    <div class="admin-table-wrapper">
 
-        <div class="admin-info-icon">
-            i
-        </div>
+                        <table class="admin-table">
 
-        <div>
+                            <thead>
 
-            <h3>
-                Manage Your Webinar Platform
-            </h3>
+                                <tr>
 
-            <p>
-                Create and organize webinar sessions, keep schedules
-                updated and manage the content that customers see.
-                Additional controls such as editing, publishing and
-                registration management can be accessed from this
-                administration area.
-            </p>
+                                    <th>
+                                        Webinar
+                                    </th>
 
-        </div>
+                                    <th>
+                                        Category
+                                    </th>
 
-    </section>
+                                    <th>
+                                        Date
+                                    </th>
 
-</div>
-```
+                                    <th>
+                                        Status
+                                    </th>
+
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                {% for webinar in webinars %}
+
+                                    <tr>
+
+                                        <td>
+
+                                            <div class="table-webinar">
+
+                                                <div class="table-webinar-icon">
+                                                    R
+                                                </div>
+
+                                                <div class="table-webinar-content">
+
+                                                    <strong>
+                                                        {{ webinar.title }}
+                                                    </strong>
+
+                                                    <span>
+                                                        {{ webinar.slug }}
+                                                    </span>
+
+                                                </div>
+
+                                            </div>
+
+                                        </td>
+
+
+                                        <td>
+
+                                            <span class="table-category">
+                                                {{ webinar.category_name or 'General' }}
+                                            </span>
+
+                                        </td>
+
+
+                                        <td>
+
+                                            <span class="table-date">
+                                                {{ webinar.scheduled_at or 'Not scheduled' }}
+                                            </span>
+
+                                        </td>
+
+
+                                        <td>
+
+                                            {% if webinar.status|lower == 'live' %}
+
+                                                <span class="table-status live">
+                                                    <i></i>
+                                                    Live
+                                                </span>
+
+                                            {% elif webinar.status|lower == 'completed' %}
+
+                                                <span class="table-status completed">
+                                                    Completed
+                                                </span>
+
+                                            {% elif webinar.status|lower == 'cancelled' %}
+
+                                                <span class="table-status cancelled">
+                                                    Cancelled
+                                                </span>
+
+                                            {% else %}
+
+                                                <span class="table-status upcoming">
+                                                    Upcoming
+                                                </span>
+
+                                            {% endif %}
+
+                                        </td>
+
+
+                                        <td>
+
+                                            <a
+                                                href="{{ url_for('webinar_detail', slug=webinar.slug) }}"
+                                                class="table-action"
+                                            >
+                                                View
+                                                <span>→</span>
+                                            </a>
+
+                                        </td>
+
+                                    </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            {% else %}
+
+                <div class="admin-empty">
+
+                    <div class="admin-empty-icon">
+                        R
+                    </div>
+
+                    <h3>
+                        Your webinar catalog is empty
+                    </h3>
+
+                    <p>
+                        Create your first webinar to start building
+                        your Ricoz learning calendar.
+                    </p>
+
+                    <a
+                        href="{{ url_for('create_webinar') }}"
+                        class="admin-primary-button"
+                    >
+                        Create First Webinar
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- =====================================================
+             ADMIN INFORMATION
+        ====================================================== -->
+
+        <section class="admin-info">
+
+            <div class="admin-info-icon">
+                i
+            </div>
+
+            <div class="admin-info-content">
+
+                <span class="admin-info-label">
+                    ADMIN INFORMATION
+                </span>
+
+                <h3>
+                    Manage Your Webinar Platform
+                </h3>
+
+                <p>
+                    Create and organize webinar sessions, keep schedules
+                    updated and manage the content that customers see.
+                    Additional controls such as editing, publishing and
+                    registration management can be accessed from this
+                    administration area.
+                </p>
+
+            </div>
+
+        </section>
+
+    </div>
 
 </section>
 
 {% endblock %}
+
 
 {% block extra_css %}
 
